@@ -1,0 +1,142 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  background: linear-gradient(135deg, #0a3d62, #1e90ff);
+  color: #f0f4f8;
+}
+
+/* 컨테이너 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 헤더 */
+header {
+  background-color: #0a3d62;
+  color: white;
+  padding: 30px 40px 30px 60px; /* 위 오른쪽 아래 왼쪽 */
+  text-align: left;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+header p {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-left: 5px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f0f4f8;
+  display: inline-block;
+}
+
+.nav {
+  float: right;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #f0f4f8;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #82c0ff;
+}
+
+/* 메인 비주얼 */
+.main-visual {
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-content {
+  max-width: 600px;
+}
+
+.main-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.main-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  color: #c0d9ff;
+}
+
+.btn-primary {
+  background-color: #1e90ff;
+  color: white;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(30,144,255,0.6);
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0a3d62;
+  box-shadow: 0 8px 16px rgba(10,61,98,0.8);
+}
+
+/* 푸터 */
+.footer {
+  background-color: rgba(10, 61, 98, 0.85);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #d0d9e6;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* 반응형 */
+@media screen and (max-width: 600px) {
+  .main-title {
+    font-size: 32px;
+  }
+
+  .main-subtitle {
+    font-size: 16px;
+  }
+
+  .nav {
+    float: none;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 15px;
+  }
+}
+
