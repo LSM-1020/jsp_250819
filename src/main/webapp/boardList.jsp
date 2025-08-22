@@ -51,11 +51,11 @@
   <!-- 검색 폼 -->
    <form action="list.do" method="get">
     	<select name="searchType">
-    		<option value="btitle">제목</option>
-    		<option value="bcontent">내용</option>
-    		<option value="b.memberid">작성자</option>    		
+    		<option value="btitle" ${searchType == 'btitle' ? 'selected' : '' }>제목</option>
+    		<option value="bcontent" ${searchType == 'bcontent' ? 'selected' : '' }>내용</option>
+    		<option value="b.memberid" ${searchType == 'b.memberid' ? 'selected' : '' }>작성자</option>    		
     	</select>
-    	<input type="text" name="searchKeyword" placeholder="검색어 입력">
+    	<input type="text" name="searchKeyword" value="${searchKeyword != null ? searchKeyword : ''}" placeholder="검색어 입력">
     	<input type="submit" value="검색">
     </form>
 </div>
@@ -94,6 +94,38 @@
          </c:forEach>
         </tbody>
       </table>
+      <br>
+    <!-- 1 페이지로 이동 화살표  -->
+    <c:if test="${currentPage > 1}">
+    <a href="list.do?page=1&searchType=${searchType}&searchKeyword=${searchKeyword}"> ◀◀ </a>
+    </c:if>
+    <!-- 이전 페이지 그룹으로 이동 화살표  -->
+    <c:if test="${startPage > 1 }">
+    <a href="list.do?page=${startPage-1}&searchType=${searchType}&searchKeyword=${searchKeyword}"> ◀ </a>
+    </c:if>
+    <!-- 페이지 번호 그룹 출력 -->
+    <span>
+	    <c:forEach begin="${startPage }" end="${endPage }" var="i">
+	    	<c:choose>
+	    		<c:when test="${i == currentPage }">
+	    			<span><a href="list.do?page=${i}&searchType=${searchType}&searchKeyword=${searchKeyword }"><b style="color:red;">[${i}]</b> </a></span>
+	    		</c:when>
+	    		<c:otherwise>
+	    			<span><a href="list.do?page=${i}&searchType=${searchType}&searchKeyword=${searchKeyword }"> [${i}] </a></span>
+	    		</c:otherwise>
+	    	</c:choose>
+	    </c:forEach>
+    </span>
+    
+    <!-- 다음 페이지 그룹으로 이동 화살표  -->
+    <c:if test="${endPage < totalPage }">
+    <a href="list.do?page=${endPage + 1 }&searchType=${searchType}&searchKeyword=${searchKeyword}"> ▶ </a>
+    </c:if>
+    <!-- 마지막 페이지로 이동 화살표  -->
+    <c:if test="${currentPage < totalPage }">
+    <a href="list.do?page=${totalPage}&searchType=${searchType}&searchKeyword=${searchKeyword}"> ▶▶ </a>
+    </c:if>
+      
     </section>
   </main>
 </body>
