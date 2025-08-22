@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.LSM.dao.BoardDao;
 import com.LSM.dao.MemberDao;
 import com.LSM.dto.BoardDto;
@@ -53,6 +54,7 @@ public class BoardController extends HttpServlet {
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		List<BoardMemberDto> bmDtos = new ArrayList<BoardMemberDto>();
 		HttpSession session = null;
+	
 		
 		//List<BoardDto> countDtos = new ArrayList<BoardDto>();
 		
@@ -74,7 +76,9 @@ public class BoardController extends HttpServlet {
 				if(!bDtos.isEmpty()) {
 					totalBoardCount = bDtos.get(0).getBno();
 					}
-				bDtos = boardDao.searchBoardList(searchKeyword, searchType, page);				
+				bDtos = boardDao.searchBoardList(searchKeyword, searchType, page);			
+				request.setAttribute("searchKeyword", searchKeyword);
+				request.setAttribute("searchType", searchType);
 				//countDtos= boardDao.searchBoardList(searchKeyword, searchType, 1);
 				//1페이지 해당하는 글 목록 가져오기
 			} else { //list.do->모든 게시판 글 리스트를 원하는 경우
@@ -111,8 +115,7 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("totalPage", totalPage); //전체 글 갯수로 계산한 전체 페이지 수
 			request.setAttribute("startPage", startPage); //페이지 그룹 출력시 첫번째 페이지 번호
 			request.setAttribute("endPage", endPage); //페이지 그룹 출력시 마지막 페이지 번호
-			request.setAttribute("searchKeyword", searchKeyword);
-			request.setAttribute("searchType", searchType);
+			
 			
 			viewPage = "boardList.jsp";
 		} else if(comm.equals("/write.do")) { //글쓰기
@@ -191,7 +194,10 @@ public class BoardController extends HttpServlet {
 		boardDao.boardWrite(btitle, bcontent, memberid); //새 글이 DB입력
 		response.sendRedirect("list.do"); //포워딩을 하지 않고 강제로 list.do로 이동
 		return; //프로그램의 진행 멈춤
-	} else if(comm.equals("/login.do")) { //글목록에서 선택된 글 내용 보여지는 
+	} else if(comm.equals("/index.do")) { //홈으로 
+		viewPage = "index.jsp";
+
+	}else if(comm.equals("/login.do")) { //글목록에서 선택된 글 내용 보여지는 
 		viewPage = "login.jsp";
 
 	} else if(comm.equals("/loginOk.do")) { //글목록에서 선택된 글 내용 보여지는 

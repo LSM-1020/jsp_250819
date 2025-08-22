@@ -10,18 +10,7 @@
   <link rel="stylesheet" href="css/boardindex.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <h1 class="logo">우리회사</h1>
-      <nav class="nav">
-     	<a href="#" class="nav-link">홈</a>
-     	<a href="login.do" class="nav-link">로그인</a>
-        <a href="#" class="nav-link">회사소개</a>
-        <a href="list.do" class="nav-link">게시판</a>
-        <a href="#" class="nav-link">연락처</a>
-      </nav>
-    </div>
-  </header>
+  <%@ include file="include/header.jsp" %>
 
   <main class="main-visual">
     <div class="container main-content">
@@ -32,12 +21,9 @@
       </p>
       <a href="board.html" class="btn-primary">홈페이지 바로가기</a>
     </div>
+   
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 우리. All rights reserved.</p>
-    </div>
-  </footer>
+ <%@ include file="include/footer.jsp" %>
+ 
 </body>
 </html>
